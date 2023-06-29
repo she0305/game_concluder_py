@@ -1,5 +1,5 @@
 import Link from "next/link";
-import poker from "../../public/poker.png";
+import poker from "../app/poker.png";
 import Image from "next/image";
 export default function Header() {
   return (
