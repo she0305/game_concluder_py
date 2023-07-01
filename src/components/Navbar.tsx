@@ -1,7 +1,7 @@
 import Link from "next/link";
 import poker from "../app/poker.png";
 import Image from "next/image";
-export default function Header() {
+export default function Navbar() {
   return (
     <header
       className={"flex justify-between items-center py-4 px-2 bg-green-600"}
