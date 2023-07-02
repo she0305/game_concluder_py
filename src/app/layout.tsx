@@ -1,9 +1,9 @@
 import "./globals.css";
-import { Open_Sans } from "next/font/google";
+import {Open_Sans} from "next/font/google";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-const sans = Open_Sans({ subsets: ["latin"] });
+const sans = Open_Sans({subsets: ["latin"]});
 
 export const metadata = {
   title: "Poker Club",
