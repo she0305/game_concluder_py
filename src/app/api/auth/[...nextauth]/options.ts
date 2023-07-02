@@ -6,13 +6,13 @@ import EmailProvider from "next-auth/providers/email"
 export const options: NextAuthOptions = {
     providers: [
         GoogleProvider({
-            clientId: process.env.GOOGLE_ID as string,
-            clientSecret: process.env.GOOGLE_SECRET as string,
+            clientId: process.env.GOOGLE_ID as string || '',
+            clientSecret: process.env.GOOGLE_SECRET as string || '',
         }),
-        EmailProvider({
-            server: process.env.MAIL_SERVER,
-            from: "<no-reply@example.com>",
-        }),
+        // EmailProvider({
+        //     server: process.env.MAIL_SERVER,
+        //     from: "<no-reply@example.com>",
+        // }),
         CredentialsProvider({
             // The name to display on the sign in form (e.g. "Sign in with...")
             name: "Credentials",

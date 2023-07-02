@@ -3,8 +3,10 @@ import Link from "next/link";
 import poker from "../app/poker.png";
 import Image from "next/image";
 import Button from "./ui/Button";
+import {useSession, signIn, signOut} from "next-auth/react"
 
 export default function Navbar() {
+    const {data: session, status} = useSession()
     return (
         <header
             className={"flex justify-between items-center py-4 px-2 bg-green-600"}
@@ -19,8 +21,9 @@ export default function Navbar() {
                 <Link href="/about">about</Link>
                 <Link href="/forum">forum</Link>
                 <Link href="/helper">helper</Link>
-                <Button text="Log in" onClick={() => {
-                }}/>
+                {session ? <Button text="Log out" onClick={() => signOut()}/> :
+                    <Button text="Log in" onClick={() => signIn()}/>
+                }
             </nav>
         </header>
     );
