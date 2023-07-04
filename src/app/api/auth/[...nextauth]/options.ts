@@ -3,7 +3,7 @@ import GoogleProvider from 'next-auth/providers/google'
 import CredentialsProvider from "next-auth/providers/credentials";
 import EmailProvider from "next-auth/providers/email"
 
-export const options: NextAuthOptions = {
+export const authOptions: NextAuthOptions = {
     providers: [
         GoogleProvider({
             clientId: process.env.GOOGLE_ID as string || '',
@@ -15,20 +15,20 @@ export const options: NextAuthOptions = {
         // }),
         CredentialsProvider({
             // The name to display on the sign in form (e.g. "Sign in with...")
-            name: "Credentials",
+            name: "Sign in",
             // `credentials` is used to generate a form on the sign in page.
             // You can specify which fields should be submitted, by adding keys to the `credentials` object.
             // e.g. domain, username, password, 2FA token, etc.
             // You can pass any HTML attribute to the <input> tag through the object.
             credentials: {
-                username: {label: "Username", type: "text", placeholder: "jsmith"},
+                email: {label: "Email", type: "email", placeholder: "jsmith@example.com"},
                 password: {label: "Password", type: "password", placeholder: "Password"},
             },
             async authorize(credentials, req) {
                 // Add logic here to look up the user from the credentials supplied
                 const user = {id: "1", name: "J Smith", email: "jsmith@example.com"}
 //https://next-auth.js.org/providers/credentials
-                if (credentials?.username === user.name && credentials?.password === credentials.password) {
+                if (credentials?.email === user.email && credentials?.password === credentials.password) {
                     // Any object returned will be saved in `user` property of the JWT
                     return user
                 } else {

@@ -3,10 +3,12 @@ import Link from "next/link";
 import poker from "../app/poker.png";
 import Image from "next/image";
 import Button from "./ui/Button";
-import {useSession, signIn, signOut} from "next-auth/react"
+import { useSession, signOut, signIn } from "next-auth/react"
+
 
 export default function Navbar() {
-    const {data: session, status} = useSession()
+    const { data: session, status } = useSession()
+    const loading = status === "loading"
     return (
         <header
             className={"flex justify-between items-center py-4 px-2 bg-green-600"}
