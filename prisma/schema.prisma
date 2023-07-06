@@ -1,3 +1,6 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
 generator client {
   provider = "prisma-client-js"
 }
@@ -7,45 +10,78 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Comments {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime
-  content   String?
-  authorId  Int?
-  postId    Int?
-  User      User?    @relation(fields: [authorId], references: [id])
-  Post      Post?    @relation(fields: [postId], references: [id])
+model Account {
+  id                 String    @id @default(cuid())
+  userId             String
+  providerType       String
+  providerId         String
+  providerAccountId  String
+  refreshToken       String?
+  accessToken        String?
+  accessTokenExpires DateTime?
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+  user               User      @relation(fields: [userId], references: [id])
+
+  @@unique([providerId, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  userId       String
+  expires      DateTime
+  sessionToken String   @unique
+  accessToken  String   @unique
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  user         User     @relation(fields: [userId], references: [id])
+}
+
+model User {
+  id            String     @id @default(cuid())
+  name          String?
+  email         String?    @unique
+  emailVerified DateTime?
+  password      String
+  image         String?
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+  accounts      Account[]
+  sessions      Session[]
+  posts         Post[]
+  comments      Comments[]
+}
+
+model VerificationRequest {
+  id         String   @id @default(cuid())
+  identifier String
+  token      String   @unique
+  expires    DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@unique([identifier, token])
 }
 
 model Post {
   id        Int        @id @default(autoincrement())
   createdAt DateTime   @default(now())
-  updatedAt DateTime
+  updatedAt DateTime   @updatedAt
   published Boolean    @default(false)
   title     String
   content   String?
-  authorId  Int?
-  Comments  Comments[]
-  User      User?      @relation(fields: [authorId], references: [id])
+  authorId  String
+  author    User       @relation(fields: [authorId], references: [id])
+  comments  Comments[]
 }
 
-model Profile {
+model Comments {
   id        Int      @id @default(autoincrement())
-  bio       String?
-  userId    Int      @unique
   createdAt DateTime @default(now())
-  updatedAt DateTime
-  User      User     @relation(fields: [userId], references: [id])
-}
-
-model User {
-  id        Int        @id @default(autoincrement())
-  email     String     @unique
-  name      String?
-  createdAt DateTime   @default(now())
-  updatedAt DateTime
-  Comments  Comments[]
-  Post      Post[]
-  Profile   Profile?
+  updatedAt DateTime @updatedAt
+  content   String?
+  authorId  String
+  post      Post?    @relation(fields: [postId], references: [id])
+  postId    Int
+  author    User     @relation(fields: [authorId], references: [id])
 }
