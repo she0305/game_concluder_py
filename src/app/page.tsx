@@ -5,11 +5,12 @@ import {authOptions} from "@/app/api/auth/[...nextauth]/options";
 
 export default async function HomePage() {
     const session = await getServerSession(authOptions)
-  return (
-    <section>
-      <Hero />
-      <Featured />
-      Main
-    </section>
-  );
+    return (
+        <section>
+            <pre>{JSON.stringify(session)}</pre>
+            <Hero/>
+            <Featured/>
+            Main
+        </section>
+    );
 }
