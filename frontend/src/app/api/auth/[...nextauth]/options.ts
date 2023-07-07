@@ -1,7 +1,6 @@
 import type {NextAuthOptions} from 'next-auth'
-// import { prisma } from '@/lib/prisma'
-import { PrismaClient } from '@prisma/client'
-const prisma = new PrismaClient()
+// import { prisma } from '@/context/prisma'
+import { prisma } from '../../../../../db'
 
 import { compare } from 'bcrypt'
 import GoogleProvider from 'next-auth/providers/google'
@@ -16,6 +15,16 @@ export const authOptions: NextAuthOptions = {
         GoogleProvider({
             clientId: process.env.GOOGLE_ID as string || '',
             clientSecret: process.env.GOOGLE_SECRET as string || '',
+            // async profile(profile) {
+            //     return {
+            //         id: profile.sub,
+            //         name: profile.name,
+            //         firstname: profile.given_name,
+            //         lastname: profile.family_name,
+            //         email: profile.email,
+            //         image: profile.picture,
+            //     }
+            // },
         }),
         // EmailProvider({
         //     server: process.env.MAIL_SERVER,
@@ -70,6 +79,13 @@ export const authOptions: NextAuthOptions = {
             }
         })
     ],
+    // pages: {
+    //     signIn: '/auth/signin',
+    //     signOut: '/auth/signout',
+    //     error: '/auth/error', // Error code passed in query string as ?error=
+    //     verifyRequest: '/auth/verify-request', // (used for check email message)
+    //     newUser: '/auth/new-user' // New users will be directed here on first sign in (leave the property out if not of interest)
+    // }
 
 
 }
