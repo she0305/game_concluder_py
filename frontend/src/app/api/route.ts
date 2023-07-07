@@ -1,5 +1,5 @@
 import {getServerSession} from "next-auth";
-import {authOptions} from "@/app/api/auth/[...nextauth]/options";
+import {authOptions} from "./auth/[...nextauth]/options";
 import {Request} from "next/dist/compiled/@edge-runtime/primitives";
 import {NextResponse} from "next/server";
 

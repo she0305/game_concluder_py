@@ -1,4 +1,4 @@
-import PostsGrid from "@/components/PostsGrid";
+import PostsGrid from "./PostsGrid";
 
 export default function Featured() {
   return (

@@ -1,8 +1,8 @@
 import "./globals.css";
 import {Open_Sans} from "next/font/google";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import AuthContext from "@/context/AuthContext";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+import AuthContext from "../context/AuthContext";
 
 const sans = Open_Sans({subsets: ["latin"]});
 
