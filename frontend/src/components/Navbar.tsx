@@ -30,11 +30,9 @@ export default function Navbar() {
                         <Avatar image={user.image}/>
                     </Link>
                 }
-
                 {session ? <Button text="Log out" onClick={() => signOut()}/> :
                     <Button text="Log in" onClick={() => signIn()}/>
                 }
-
             </nav>
         </header>
     );
