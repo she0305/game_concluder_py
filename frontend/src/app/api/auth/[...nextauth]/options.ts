@@ -6,6 +6,7 @@ import { compare } from 'bcrypt'
 import GoogleProvider from 'next-auth/providers/google'
 import CredentialsProvider from "next-auth/providers/credentials";
 import EmailProvider from "next-auth/providers/email"
+import {addUser} from "@/service/user";
 
 export const authOptions: NextAuthOptions = {
     session: {
@@ -66,11 +67,11 @@ export const authOptions: NextAuthOptions = {
 //
 //                     // you can also reject this callback with an error thus the user will be sent to the error page with the error message as a query parameter
 //                 }
-                const isPasswordValid = await compare(credentials.password, user.password)
-
-                if(!isPasswordValid) {
-                    return null
-                }
+//                 const isPasswordValid = await compare(credentials.password, user.password || '')
+//
+//                 if(!isPasswordValid) {
+//                     return null
+//                 }
                 return {
                     id: user.id + '',
                     name: user.name,
@@ -79,7 +80,16 @@ export const authOptions: NextAuthOptions = {
             }
         })
     ],
+
     callbacks: {
+        async signIn({ user: { id, name, email } }) {
+            if (!email) {
+                return false
+            }
+            await addUser({ id, name: name || '', email, image: ''  })
+            console.log('hello, signin', id, name, email)
+            return true
+        },
         async session({ session }) {
             // Send properties to the client, like an access_token from a provider.
             console.log('hello, session', session)

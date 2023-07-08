@@ -17,6 +17,8 @@ export async function addUser(user: OAuthUser) {
                 email: user.email,
                 name: user.name,
                 image: user.image,
+                id: user.id,
+                password: 'test',
             }
         }
     )
