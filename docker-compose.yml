@@ -4,19 +4,32 @@ services:
   # Containers
   # You can name the containers
   # By default when you use docker compose, when you bring your services down, the containers are removed
-  frontend:
+
+# Backend
+  backend:
     build:
-      context: ./frontend
+      context: backend
       dockerfile: Dockerfile
     depends_on:
-      - postgres
+        - postgres
     environment:
-      #If you have key value pairs, you don't need dash as it creates yaml objects
       DATABASE_URL: postgres://postgres:postgres@postgres:5432/local
       SECRET: only-for-dev
       GOOGLE_ID: ${GOOGLE_ID}
       GOOGLE_SECRET: ${GOOGLE_SECRET}
       NEXTAUTH_URL: http://localhost:3000/
+    ports:
+        - 4000:4000
+    volumes:
+        - ./backend/:/pulse/backend/:ro
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    depends_on:
+      - backend
+
     ports:
       - "3000:3000"
     volumes:

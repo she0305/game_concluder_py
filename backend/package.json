@@ -6,7 +6,11 @@
   "type": "module",
   "scripts": {
     "compile": "tsc",
-    "start": "tsc && node ./dist/index.js"
+    "dev": "tsc && node ./dist/index.js",
+    "generate:prisma": "prisma generate",
+    "format:prisma": "prisma format",
+    "migrate:dev": "prisma migrate dev",
+    "reset:prisma": "prisma migrate reset"
   },
   "devDependencies": {
     "@types/node": "^20.4.2",
