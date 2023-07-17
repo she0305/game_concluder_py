@@ -2,6 +2,9 @@
 # Get the latest LTS version of Node.js
 FROM node:18
 
+# Set to non-root user
+USER node
+
 # Create app directory
 WORKDIR /game_concluder/frontend
 

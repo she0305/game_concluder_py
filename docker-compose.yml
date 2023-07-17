@@ -21,7 +21,7 @@ services:
     ports:
         - 4000:4000
     volumes:
-        - ./backend/:/pulse/backend/:ro
+        - ./backend/:/pulse/backend/
 
   frontend:
     build:
@@ -33,7 +33,7 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - ./frontend/:/frontend/:ro
+      - ./frontend/:/frontend/
 
     # Everything in this docker compose file will be in the same network by default. Docker will automatically create a new environment for all the services specified here and add them to the network
 

@@ -1,6 +1,6 @@
 import type {NextAuthOptions} from 'next-auth'
 // import { prisma } from '@/context/prisma'
-import { prisma } from '../../../../../db'
+import { prisma } from '../../../../../../backend/db'
 
 import { compare } from 'bcrypt'
 import GoogleProvider from 'next-auth/providers/google'

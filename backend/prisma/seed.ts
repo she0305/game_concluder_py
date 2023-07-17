@@ -1,5 +1,5 @@
-import { prisma } from "../../backend/db";
-import {hash} from 'bcrypt'
+import { prisma } from "../db";
+import {hash} from "bcrypt";
 
 async function main() {
     const password = await hash('test', 10)
