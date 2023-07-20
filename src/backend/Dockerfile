@@ -3,7 +3,7 @@
 FROM node:18
 
 # Create app directory
-WORKDIR /game_concluder/backend
+WORKDIR /game_concluder/src/backend
 
 # Install app dependencies
 COPY package.json yarn.lock ./

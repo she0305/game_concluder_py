@@ -1,6 +1,6 @@
 import type {NextAuthOptions} from 'next-auth'
 // import { prisma } from '@/context/prisma'
-import { prisma } from '../../../../../../backend/db'
+import { prisma } from '@/db'
 
 import { compare } from 'bcrypt'
 import GoogleProvider from 'next-auth/providers/google'
@@ -82,25 +82,25 @@ export const authOptions: NextAuthOptions = {
     ],
 
     callbacks: {
-        async signIn({ user: { id, name, email } }) {
-            if (!email) {
-                return false
-            }
-            await addUser({ id, name: name || '', email, image: ''  })
-            console.log('hello, signin', id, name, email)
-            return true
-        },
-        async session({ session }) {
-            // Send properties to the client, like an access_token from a provider.
-            console.log('hello, session', session)
-            const user = session?.user;
-            if (user) {
-                session.user = {
-                    ...user
-                }
-            }
-            return session
-        }
+        // async signIn({ user: { id, name, email } }) {
+        //     if (!email) {
+        //         return false
+        //     }
+        //     await addUser({ id, name: name || '', email, image: ''  })
+        //     console.log('hello, signin', id, name, email)
+        //     return true
+        // },
+        // async session({ session }) {
+        //     // Send properties to the client, like an access_token from a provider.
+        //     console.log('hello, session', session)
+        //     const user = session?.user;
+        //     if (user) {
+        //         session.user = {
+        //             ...user
+        //         }
+        //     }
+        //     return session
+        // }
     }
     // pages: {
     //     signIn: '/auth/signin',

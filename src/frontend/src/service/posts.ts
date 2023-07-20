@@ -7,4 +7,4 @@ export type Post = {
   featured: boolean;
 };
 
-export async function getAllPosts(): Promise<Post[]> {}
+// export async function getAllPosts(): Promise<Post[]> {}

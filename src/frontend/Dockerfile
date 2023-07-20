@@ -6,7 +6,7 @@ FROM node:18
 USER node
 
 # Create app directory
-WORKDIR /game_concluder/frontend
+WORKDIR /game_concluder/src/frontend
 
 # Install app dependencies
 COPY package.json yarn.lock ./

@@ -1,4 +1,4 @@
-import {prisma} from "../../../backend/db"
+import {prisma} from "@/db";
 
 type OAuthUser = {
     id: string
