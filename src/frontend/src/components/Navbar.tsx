@@ -3,8 +3,9 @@ import Link from "next/link";
 import poker from "../app/poker.png";
 import Image from "next/image";
 import Button from "./ui/Button";
-import {useSession, signOut, signIn} from "next-auth/react"
+import {useSession, signOut, signIn, getSession} from "next-auth/react"
 import Avatar from "@/components/Avatar";
+import {NextPageContext} from "next";
 
 
 export default function Navbar() {
@@ -36,4 +37,16 @@ export default function Navbar() {
             </nav>
         </header>
     );
+}
+
+// The way Next.js works is that when it builds the app, it looks thru all the page files and checks if they have any getServerSideProps or getStaticProps functions.Everything that's happening inside these functions is executed on the server, and the result is sent to the client.
+
+export async function getServerSideProps(context: NextPageContext) {
+    const session = await getSession(context);
+
+    return {
+        props: {
+            session,
+        }
+    }
 }
