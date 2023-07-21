@@ -8,6 +8,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+//Prisma is required for next.auth to work..
 model Account {
   id                 String    @id @default(cuid())
   userId             String
@@ -36,17 +37,14 @@ model Session {
 }
 
 model User {
-  id            String     @id @default(cuid())
+  id            String    @id @default(cuid())
   name          String?
-  email         String?    @unique
+  email         String?   @unique
   emailVerified DateTime?
-  password      String
   image         String?
-  createdAt     DateTime   @default(now())
-  updatedAt     DateTime   @updatedAt
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
   accounts      Account[]
-  comments      Comments[]
-  posts         Post[]
   sessions      Session[]
 }
 
@@ -61,25 +59,4 @@ model VerificationRequest {
   @@unique([identifier, token])
 }
 
-model Post {
-  id        Int        @id @default(autoincrement())
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
-  published Boolean    @default(false)
-  title     String
-  content   String?
-  authorId  String
-  comments  Comments[]
-  author    User       @relation(fields: [authorId], references: [id])
-}
 
-model Comments {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  content   String?
-  authorId  String
-  postId    Int
-  author    User     @relation(fields: [authorId], references: [id])
-  post      Post     @relation(fields: [postId], references: [id])
-}

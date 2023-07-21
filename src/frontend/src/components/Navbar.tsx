@@ -40,10 +40,9 @@ export default function Navbar() {
 }
 
 // The way Next.js works is that when it builds the app, it looks thru all the page files and checks if they have any getServerSideProps or getStaticProps functions.Everything that's happening inside these functions is executed on the server, and the result is sent to the client.
-
+// Can I still use this with the new next js?
 export async function getServerSideProps(context: NextPageContext) {
     const session = await getSession(context);
-
     return {
         props: {
             session,
