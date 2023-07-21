@@ -33,5 +33,7 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
-frontend/next-env.d.ts
+src/frontend/next-env.d.ts
+
+# intellij configs
 .idea/
