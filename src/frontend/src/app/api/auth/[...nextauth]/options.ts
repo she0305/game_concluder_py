@@ -1,12 +1,14 @@
 import type {NextAuthOptions} from 'next-auth'
-// import { prisma } from '@/context/prisma'
-import { prisma } from '@/db'
 
 import { compare } from 'bcrypt'
 import GoogleProvider from 'next-auth/providers/google'
 import CredentialsProvider from "next-auth/providers/credentials";
 import EmailProvider from "next-auth/providers/email"
 import {addUser} from "@/service/user";
+import { client } from "@/graphql/client";
+
+
+
 
 export const authOptions: NextAuthOptions = {
     session: {
@@ -50,14 +52,14 @@ export const authOptions: NextAuthOptions = {
                     return null
                 }
 
-                const user = await prisma.user.findUnique({
-                    where: {
-                        email: credentials.email,
-                    }
-                })
-                if (!user) {
-                    return null
-                }
+                // const user = await prisma.user.findUnique({
+                //     where: {
+                //         email: credentials.email,
+                //     }
+                // })
+                // if (!user) {
+                //     return null
+                // }
 //                 if (credentials?.email === user.email && credentials?.password === credentials.password) {
 //                     // any object returned will be saved in `user` property of the jwt
 //                     return user
