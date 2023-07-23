@@ -6,6 +6,9 @@ import http from 'http';
 import pkg from 'body-parser';
 import cors from 'cors';
 import {makeExecutableSchema} from "@graphql-tools/schema";
+import typeDefs from "./graphql/typeDefs/index";
+import resolvers from "./graphql/resolvers/index";
+
 
 const { json } = pkg;
 
@@ -18,41 +21,6 @@ const app = express();
 const httpServer = http.createServer(app);
 
 
-const typeDefs = `#graphql
-# Comments in GraphQL strings (such as this one) start with the hash (#) symbol.
-
-
-
-# This "Book" type defines the queryable fields for every book in our data source.
-type Book {
-    title: String
-    author: String
-}
-
-# The "Query" type is special: it lists all of the available queries that
-# clients can execute, along with the return type for each. In this
-# case, the "books" query returns an array of zero or more Books (defined above).
-type Query {
-    books: [Book]
-}
-`
-const books = [
-    {
-        title: 'The Awakening',
-        author: 'Kate Chopin',
-    },
-    {
-        title: 'City of Glass',
-        author: 'Paul Auster',
-    },
-];
-// Resolvers define how to fetch the types defined in your schema.
-// This resolver retrieves books from the "books" array above.
-const resolvers = {
-    Query: {
-        books: () => books,
-    },
-};
 
 const schema = makeExecutableSchema(
     {
@@ -80,7 +48,6 @@ await server.start();
 
 // Specify the path where we'd like to mount our server
 app.use(
-    '/graphql',
     cors<cors.CorsRequest>(),
     json(),
     expressMiddleware(server, {
@@ -88,4 +55,4 @@ app.use(
     }),
 );
 await new Promise<void>((resolve) => httpServer.listen({ port: 4000}, resolve));
-console.log(`🚀 Server ready at http://localhost:4000/graphql`);
+console.log(`🚀 Server ready at http://localhost:4000`);

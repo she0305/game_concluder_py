@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "clean": "rm -r ./dist",
-    "dev": "NODE_ENV=development ts-node --esm src/index.ts",
+    "dev": "NODE_ENV=development ts-node --experimental-specifier-resolution=node --esm src/index.ts",
     "generate:prisma": "prisma generate",
     "format:prisma": "prisma format",
     "migrate:dev": "prisma migrate dev",
@@ -26,13 +26,11 @@
   },
   "devDependencies": {
     "@types/cors": "^2.8.13",
-    "@types/node": "^20.4.2",
+    "@types/lodash.merge": "^4.6.7",
+    "@types/node": "^20.4.4",
     "bcrypt": "^5.1.0",
+    "lodash.merge": "^4.6.2",
     "ts-node": "^10.9.1",
     "typescript": "^5.1.6"
-  },
-  "prisma": {
-    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts",
-    "schema": "src/prisma/schema.prisma"
   }
 }
