@@ -1,4 +1,4 @@
-import { prisma } from "../db";
+import { prisma } from "../../db";
 import {hash} from "bcrypt";
 
 async function main() {

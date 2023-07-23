@@ -1,10 +1,22 @@
 import { ApolloServer } from '@apollo/server';
-import { startStandaloneServer } from '@apollo/server/standalone';
+import { expressMiddleware } from '@apollo/server/express4';
+import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
+import express from 'express';
+import http from 'http';
+import pkg from 'body-parser';
+import cors from 'cors';
+import {makeExecutableSchema} from "@graphql-tools/schema";
+
+const { json } = pkg;
+
 
 
 // A schema is a collection of type definitions (hence "typeDefs")
 // that together define the "shape" of queries that are executed against
 // your data.
+const app = express();
+const httpServer = http.createServer(app);
+
 
 const typeDefs = `#graphql
 # Comments in GraphQL strings (such as this one) start with the hash (#) symbol.
@@ -41,21 +53,39 @@ const resolvers = {
         books: () => books,
     },
 };
+
+const schema = makeExecutableSchema(
+    {
+        typeDefs,
+        resolvers
+    }
+)
+
+// interface MyContext {
+//     token?: String;
+// }
+
+
+
 // The ApolloServer constructor requires two parameters: your schema
 // definition and your set of resolvers.
 const server = new ApolloServer({
-    typeDefs,
-    resolvers,
+    schema,
+    plugins: [ApolloServerPluginDrainHttpServer({ httpServer })] as any,
 });
 
-// Passing an ApolloServer instance to the `startStandaloneServer` function:
-//  1. creates an Express app
-//  2. installs your ApolloServer instance as middleware
-//  3. prepares your app to handle incoming requests
-const { url } = await startStandaloneServer(server, {
-    listen: { port: 4000 },
-});
+// Note you must call `start()` on the `ApolloServer`
+// instance before passing the instance to `expressMiddleware`
+await server.start();
 
-console.log(`🚀  Server ready at: ${url}`);
-
-
+// Specify the path where we'd like to mount our server
+app.use(
+    '/graphql',
+    cors<cors.CorsRequest>(),
+    json(),
+    expressMiddleware(server, {
+        context: async ({ req }) => ({ token: req.headers.token }),
+    }),
+);
+await new Promise<void>((resolve) => httpServer.listen({ port: 4000}, resolve));
+console.log(`🚀 Server ready at http://localhost:4000/graphql`);
