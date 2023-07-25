@@ -92,17 +92,24 @@ export const authOptions: NextAuthOptions = {
         //     console.log('hello, signin', id, name, email)
         //     return true
         // },
-        // async session({ session }) {
-        //     // Send properties to the client, like an access_token from a provider.
-        //     console.log('hello, session', session)
-        //     const user = session?.user;
-        //     if (user) {
-        //         session.user = {
-        //             ...user
-        //         }
-        //     }
-        //     return session
-        // }
+        async session({ token, session }) {
+            // Send properties to the client, like an access_token from a provider.
+            if(token) {
+                session.user.id = token.id
+                session.user.name = token.name
+                session.user.email = token.email
+                session.user.image = token.picture
+                session.user.username = token.username
+            }
+            console.log('hello, session', session)
+            const user = session?.user;
+            if (user) {
+                session.user = {
+                    ...user
+                }
+            }
+            return session
+        }
     }
     // pages: {
     //     signIn: '/auth/signin',

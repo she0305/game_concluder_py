@@ -2,6 +2,7 @@ import {prisma} from "@/db";
 
 type OAuthUser = {
     id: string
+    username: string
     name: string
     email: string
     emailVerified?: string
@@ -9,17 +10,17 @@ type OAuthUser = {
     createdAt?: string
     updatedAt?: string
 }
-
-export async function addUser(user: OAuthUser) {
-    return prisma.user.create(
-        {
-            data: {
-                email: user.email,
-                name: user.name,
-                image: user.image,
-                id: user.id,
-                password: 'test',
-            }
-        }
-    )
-}
+//
+// export async function addUser(user: OAuthUser) {
+//     return prisma.user.create(
+//         {
+//             data: {
+//                 email: user.email,
+//                 name: user.name,
+//                 image: user.image,
+//                 id: user.id,
+//                 password: 'test',
+//             }
+//         }
+//     )
+// }
