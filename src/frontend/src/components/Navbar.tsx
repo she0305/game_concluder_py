@@ -8,13 +8,16 @@ import Avatar from "@/components/Avatar";
 import {GetServerSidePropsContext} from "next";
 import {redirect} from "next/navigation";
 
+import React from "react";
+import {ModeToggle} from "@/components/DarkModeToggle";
+
 export default function Navbar() {
 
     const {data: session, status} = useSession()
     const loading = status === "loading"
     const user = session?.user
     return (
-        <div className="fixed top-0 inset-x-0 h-fit bg-zinc-100 border-b border-zinc-300 z-[10] py-2">
+        <div className="fixed top-0 inset-x-0 h-fit bg-zinc-100 border-zinc-300 z-[10] py-2 ">
             <div className="container max-w-7xl h-full mx-auto flex items-center justify-between gap-2}"><Link href='/'
                                                                                                                className="flex gap-2 items-center"><Image
                 src={poker} alt="poker" className=" w-10 h-10 sm:h-6 sm:w-6"/> <p className="hidden text-gray-900
@@ -33,6 +36,7 @@ export default function Navbar() {
                     {session ? <Button text="Sign Out" onClick={() => signOut()}/> :
                         <Link href={'auth/signin'} className={"bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"}>Sign In</Link>
                     }
+                    <ModeToggle/>
                 </nav>
             </div>
         </div>

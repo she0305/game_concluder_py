@@ -7,11 +7,13 @@ import {authOptions} from "./api/auth/[...nextauth]/options";
 export default async function HomePage() {
     const session = await getServerSession(authOptions)
     return (
-        <section>
-            <pre>{JSON.stringify(session)}</pre>
-            <Hero/>
-            <Featured/>
-            Main
+        <section >
+            <div className={"grid bg-pink-200 place-content-center "}>
+                <pre>{JSON.stringify(session)}</pre>
+                <Hero/>
+                <Featured/>
+                Main
+            </div>
         </section>
     );
 }

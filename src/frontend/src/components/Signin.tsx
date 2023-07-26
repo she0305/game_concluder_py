@@ -3,10 +3,12 @@ import poker from "@/app/poker.png";
 import {Icons} from "@/components/icons";
 import Link from "next/link";
 import {AuthForm} from "@/components/AuthForm";
+import React from "react";
 // this is a server component
 const Signin = () => {
     return (
         <div>
+
         <div className={'flex container mx-auto w-full flex-col items-center justify-center space-y-6 sm:2-[400px] '}>
             <Link href='/' className="flex gap-2 items-center">
             <Icons className={'mx-auto h-10 w-6'}/>
@@ -18,6 +20,7 @@ const Signin = () => {
             <p className={'px-8 text-center text-sm text-gray-500'}>New to Poker Club? {' '}
             <Link href={'/signup'} className={'text-blue-500 hover:underline'}>Create an account</Link>
             </p>
+
         </div>
         </div>
     )
