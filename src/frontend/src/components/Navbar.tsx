@@ -2,7 +2,7 @@
 import Link from "next/link";
 import poker from "../app/poker.png";
 import Image from "next/image";
-import Button from "./ui/Button";
+import {Button, buttonVariants} from "./ui/Button";
 import {useSession, signOut, signIn, getSession} from "next-auth/react"
 import Avatar from "@/components/Avatar";
 import {GetServerSidePropsContext} from "next";

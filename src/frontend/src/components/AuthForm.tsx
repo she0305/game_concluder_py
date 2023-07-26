@@ -1,8 +1,9 @@
 'use client'
 // @flow
 import * as React from 'react';
-import Button from "@/components/ui/Button";
+import { Button } from "@/components/ui/Button";
 import {FC} from "react";
+import Image from "next/image";
 import {signIn} from "next-auth/react";
 import googleIcon from "../app/asset/googleIcon.png";
 import poker from "@/app/poker.png";

@@ -1,4 +1,4 @@
-import Image from "next/image";
+
 import poker from "@/app/poker.png";
 import {Icons} from "@/components/icons";
 import Link from "next/link";
