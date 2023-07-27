@@ -61,7 +61,9 @@ export default function Navbar() {
               HELPER
             </Link>
             {session ? (
-                <Button text="Sign Out" onClick={() => signOut()} />
+                <Link href={`/user/${user.name}`}>
+                  <Avatar image={user.image} />
+                </Link>
             ) : (
                 <Link
                     href={"auth/signin"}
@@ -74,11 +76,11 @@ export default function Navbar() {
             )}
             </div>
           </section>
-          {user && (
-            <Link href={`/user/${user.name}`}>
-              <Avatar image={user.image} />
-            </Link>
-          )}
+          {/*{user && (*/}
+          {/*  <Link href={`/user/${user.name}`}>*/}
+          {/*    <Avatar image={user.image} />*/}
+          {/*  </Link>*/}
+          {/*)}*/}
           <ModeToggle />
         </nav>
       </div>

@@ -8,7 +8,7 @@ export default async function HomePage() {
     const session = await getServerSession(authOptions)
     return (
         <section >
-            <div className={"grid bg-pink-200 place-content-center "}>
+            <div className={"grid place-content-center "}>
                 <pre>{JSON.stringify(session)}</pre>
                 <Hero/>
                 <Featured/>

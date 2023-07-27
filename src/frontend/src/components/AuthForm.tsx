@@ -28,7 +28,7 @@ export const AuthForm = ()  =>{
 
     return (
         <div className={'flex justify-center'}>
-            <Button text="Sign In" onClick={login} loading={loading} size={'sm'} className={'w-full'}>{loading ? null : <div className={"flex bg-black py-2 px-2 rounded-full gap-2 m-5 px-5"}><Image className={'h-4 w-4 mr-2'} src={googleIcon} /><div className={"font-bold text-white "}> Continue with Google </div></div>}</Button>
+            <Button text="Sign In" onClick={login} loading={loading} size={'lg'} className={'w-full'}>{loading ? null : <div className={"flex bg-black py-2 px-2 rounded-full gap-2 py-3 px-16 items-center"}><Image className={'h-6 w-6 mr-2'} src={googleIcon} /><div className={"font-bold text-white "}> Continue with Google </div></div>}</Button>
 
         </div>
     );

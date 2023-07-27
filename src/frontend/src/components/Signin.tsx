@@ -4,23 +4,26 @@ import {Icons} from "@/components/icons";
 import Link from "next/link";
 import {AuthForm} from "@/components/AuthForm";
 import React from "react";
+import Image from "next/image";
+import googleIcon from "@/app/asset/googleIcon.png";
 // this is a server component
 const Signin = () => {
     return (
         <div>
 
-        <div className={'flex container mx-auto w-full flex-col items-center justify-center space-y-6 sm:2-[400px] '}>
+        <div className={'flex flex-col '}>
+            <div className={'flex flex-col bg-gray-100 rounded-2xl p-20 items-center justify-center space-y-6 sm:2-[400px]'}>
             <Link href='/' className="flex gap-2 items-center">
-            <Icons className={'mx-auto h-10 w-6'}/>
+                <div className={'w-10 h-10'}><Icons/></div>
             </Link>
             <h1 className={'text-2xl font-semibold tracking-tight text-gray-900'}>Welcome!</h1>
-            <p className={'text-sm max-w-xs mx-auto'}>Sign in to continue</p>
+            <p className={'text-xs max-w-xs mx-auto'}>Sign in to continue</p>
             {/* Sign in with google */}
             <AuthForm/>
             <p className={'px-8 text-center text-sm text-gray-500'}>New to Poker Club? {' '}
             <Link href={'/signup'} className={'text-blue-500 hover:underline'}>Create an account</Link>
             </p>
-
+            </div>
         </div>
         </div>
     )

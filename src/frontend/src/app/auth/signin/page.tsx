@@ -23,8 +23,7 @@ import { ModeToggle } from "@/components/DarkModeToggle";
 const signInpage = () => {
     return (
         <div className={'absolute inset-1'}>
-        <div className="flex flex-col items-center justify-center gap-20 h-full max-w-2xl mx-auto">
-            Sign In Page
+        <div className="flex flex-col items-center justify-center gap-10 h-full max-w-2xl mx-auto my-auto">
             <SignIn/>
         </div>
         </div>
