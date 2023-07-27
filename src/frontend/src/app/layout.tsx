@@ -27,7 +27,7 @@ export default function RootLayout({
                 <header>
                     <Navbar/>
                 </header>
-                <main className="grow max-w-screen-2xl bg-slate-200 dark:bg-gray-800">
+                <main className="grow justify-center max-w-screen-2xl bg-slate-200 dark:bg-gray-800">
                 {children}
 
             </main>
