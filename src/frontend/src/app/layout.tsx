@@ -13,28 +13,23 @@ export const metadata = {
     description: "A community hub for poker players",
 };
 
-export default function RootLayout({
-                                       children,
-                                   }: {
+export default function RootLayout({children,}: {
     children: React.ReactNode;
 }) {
     return (
         <html lang="en" className={sans.className}>
-        <Context>
-
-            <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-        <body className="w-full bg-slate-200 dark:bg-gray-800 mx-auto" suppressHydrationWarning={true}>
-                <header>
+        <body className="pt-12 min-h-screen flex flex-col bg-slate-200 dark:bg-gray-800 mx-auto" suppressHydrationWarning={true}>
+            <Context>
+                <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
                     <Navbar/>
-                </header>
-                <main className="grow w-full justify-center w-full max-w-screen-2xl mx-auto bg-slate-200 dark:bg-gray-800">
-                {children}
+                    <main className="w-full justify-center w-full max-w-screen-2xl mx-auto mb-auto h-full bg-slate-200 dark:bg-gray-800 pt-12 ">
+                    {children}
+                    </main>
+                </ThemeProvider>
 
-            </main>
-        </body>
-            </ThemeProvider>
-            <Footer/>
-        </Context>
+                <Footer/>
+            </Context>
+                    </body>
         </html>
     );
 }
