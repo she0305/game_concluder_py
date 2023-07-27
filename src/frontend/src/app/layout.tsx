@@ -18,15 +18,14 @@ export default function RootLayout({children,}: {
 }) {
     return (
         <html lang="en" className={sans.className}>
-        <body className="pt-12 min-h-screen flex flex-col bg-slate-200 dark:bg-gray-800 mx-auto" suppressHydrationWarning={true}>
+        <body className="flex flex-col h-screen flex flex-col bg-slate-200 dark:bg-gray-800 mx-auto" suppressHydrationWarning={true}>
             <Context>
                 <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
                     <Navbar/>
-                    <main className="w-full justify-center w-full max-w-screen-2xl mx-auto mb-auto h-full bg-slate-200 dark:bg-gray-800 pt-12 ">
+                    <main className="grow w-full justify-center w-full max-w-screen-2xl mx-auto mb-auto  bg-slate-200 dark:bg-gray-800 pt-12 ">
                     {children}
                     </main>
                 </ThemeProvider>
-
                 <Footer/>
             </Context>
                     </body>
