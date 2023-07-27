@@ -20,21 +20,21 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en" className={sans.className}>
-        <body className="flex flex-col w-full max-w-screen-3xl mx-auto" suppressHydrationWarning={true}>
         <Context>
 
             <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+        <body className="w-full bg-slate-200 dark:bg-gray-800 mx-auto" suppressHydrationWarning={true}>
                 <header>
                     <Navbar/>
                 </header>
-                <main className="grow justify-center max-w-screen-2xl bg-slate-200 dark:bg-gray-800">
+                <main className="grow w-full justify-center w-full max-w-screen-2xl mx-auto bg-slate-200 dark:bg-gray-800">
                 {children}
 
             </main>
+        </body>
             </ThemeProvider>
             <Footer/>
         </Context>
-        </body>
         </html>
     );
 }

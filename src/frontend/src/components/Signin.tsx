@@ -13,7 +13,7 @@ const Signin = () => {
             <Link href='/' className="flex gap-2 items-center">
             <Icons className={'mx-auto h-10 w-6'}/>
             </Link>
-            <h1 className={'text-2xl font-semibold tracking-tight'}>Welcome!</h1>
+            <h1 className={'text-2xl font-semibold tracking-tight text-gray-900'}>Welcome!</h1>
             <p className={'text-sm max-w-xs mx-auto'}>Sign in to continue</p>
             {/* Sign in with google */}
             <AuthForm/>
