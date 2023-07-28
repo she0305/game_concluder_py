@@ -8,10 +8,9 @@ import Image from "next/image";
 import googleIcon from "@/app/asset/googleIcon.png";
 // this is a server component
 const Signin = () => {
-    return (
-        <div>
 
-        <div className={'flex flex-col '}>
+    return (
+
             <div className={'flex flex-col bg-gray-100 rounded-2xl p-20 items-center justify-center space-y-6 sm:2-[400px]'}>
             <Link href='/' className="flex gap-2 items-center">
                 <div className={'w-10 h-10'}><Icons/></div>
@@ -24,8 +23,7 @@ const Signin = () => {
             <Link href={'/signup'} className={'text-blue-500 hover:underline'}>Create an account</Link>
             </p>
             </div>
-        </div>
-        </div>
+
     )
 }
 

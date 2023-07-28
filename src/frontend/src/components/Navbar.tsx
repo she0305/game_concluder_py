@@ -6,8 +6,6 @@ import { Button, buttonVariants } from "./ui/Button";
 import { useSession, signOut, signIn, getSession } from "next-auth/react";
 import Avatar from "@/components/Avatar";
 import { GetServerSidePropsContext } from "next";
-import { redirect } from "next/navigation";
-import "boxicons";
 
 import React, { useState } from "react";
 import { ModeToggle } from "@/components/DarkModeToggle";
@@ -61,9 +59,12 @@ export default function Navbar() {
               HELPER
             </Link>
             {session ? (
-                <Link href={`/user/${user.name}`}>
+                <Link href={`/about/${user.name}`}>
                   <Avatar image={user.image} />
                 </Link>
+                // <Link href={`/user/${user.name}`}>
+                //   <Avatar image={user.image} />
+                // </Link>
             ) : (
                 <Link
                     href={"auth/signin"}
