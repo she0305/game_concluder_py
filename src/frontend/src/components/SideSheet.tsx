@@ -40,7 +40,9 @@ export function SheetSide() {
                         <SheetHeader>
                             <SheetTitle><div className={"flex gap-2 items-center justify-center text-gray-900 text-lg font-bold "}> Poker Club <Image src={poker} alt={poker} className={"h-5 w-5"}/> </div></SheetTitle>
                             {session ? (
-                                <Button text="Sign Out" onClick={() => signOut()} />
+                                <Button text="Sign Out" onClick={() => signOut()} size={'lg'}className={
+                                    "bg-green-600 text-center hover:bg-green-700 text-white font-bold py-2 px-4  rounded justify-center"
+                                } > Sign Out</Button>
                             ) : (
                                 <Link
                                     href={"auth/signin"}
