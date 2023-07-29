@@ -1,14 +1,30 @@
+import {prisma} from "../../../db";
 
 export const userResolvers = {
     Query: {
-        searchUsers: () => {},
+        users: () => {
+        return prisma.user.findMany({})
+
+        },
+
+        // user: () => {
+        //     return prisma.user.findUnique(
+        //         {
+        //             where: {
+        //                 id: _args.id,
+        //             }
+        //         }
+        //     )
+        // }
+
     },
-    Mutation: {
-        createUser: () => {},
-        createUsername: () => {},
-    },
+    // Mutation: {
+    //     createUser: () => {},
+    //     createUsername: () => {},
+    // },
 
 }
+
 
 // const typeDefs = `#graphql
 // # Comments in GraphQL strings (such as this one) start with the hash (#) symbol.
