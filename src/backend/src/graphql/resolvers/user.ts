@@ -19,8 +19,20 @@ export const userResolvers = {
 
     },
     // Mutation: {
-    //     createUser: () => {},
-    //     createUsername: () => {},
+    //     createUser: (_root, _args, _context, _info) => {
+    //         return prisma.user.create(
+    //             {
+    //                 data: {
+    //                     email: _args.email,
+    //                     name: _args.name,
+    //                     image: _args.image,
+    //                     id: _args.id,
+    //                     password: _args.password,
+    //                 }
+    //             }
+    //         )
+    //     }
+    //     // createUsername: () => {},
     // },
 
 }

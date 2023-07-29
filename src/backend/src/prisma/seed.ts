@@ -1,24 +1,28 @@
 import { prisma } from "../../db";
-import {hash} from "bcrypt";
+
+// import {hash} from "bcrypt";
 
 async function main() {
-    const password = await hash('test', 10)
-    const user = await prisma.user.upsert({
-        where: {email: 'test@test.com'},
-        update: {},
-        create: {
-            email: 'test@test.com',
-            name: 'test',
-            createdAt: new Date(),
-            updatedAt: new Date(),
-            password
-        }
-    })
+    // const password = await hash('test', 10)
+    // const user = await prisma.user.upsert({
+    //     where: {email: 'test@test.com'},
+    //     update: {},
+    //     create: {
+    //         email: 'test@test.com',
+    //         name: 'test',
+    //         createdAt: new Date(),
+    //         updatedAt: new Date(),
+    //         password
+    //     }
+    // })
 
-    console.log({user})
+
+    // console.log({user})
 }
 main()
-    .then(() => prisma.$disconnect())
+    .then(async () => {
+        await prisma.$disconnect()
+    })
     .catch(async (e) => {
         console.error(e)
         await prisma.$disconnect()

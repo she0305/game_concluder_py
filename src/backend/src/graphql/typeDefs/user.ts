@@ -19,16 +19,28 @@ type Query {
     users: [User]
 
 }
-
+#
+##type CreateUsernameResponse {
+##    success: Boolean
+##    error: String
+##}
+#
+#type CreateUser {
+#    id: String
+#    name: String
+#    username: String
+#    email: String
+#    emailVerified: Boolean
+#    password: String
+#    image: String
+#    createdAt: String
+#    updatedAt: String
+#}
 #type Mutation {
 #    createUser(name: String!, email: String!, password: String!): User
-#    createUsername(username: String): CreateUsernameResponse
+##    createUsername(username: String): CreateUsernameResponse
 #}
 #
-#type CreateUsernameResponse {
-#    success: Boolean
-#    error: String
-#}
 
 `
 

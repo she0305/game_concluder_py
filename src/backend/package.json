@@ -28,14 +28,15 @@
     "@types/bcrypt": "^5.0.0",
     "@types/cors": "^2.8.13",
     "@types/lodash.merge": "^4.6.7",
-    "@types/node": "^20.4.4",
+    "@types/node": "^20.4.5",
     "bcrypt": "^5.1.0",
     "lodash.merge": "^4.6.2",
     "ts-node": "^10.9.1",
+    "tsx": "^3.12.7",
     "typescript": "^5.1.6"
   },
   "prisma": {
-    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts",
+    "seed": "tsx prisma/seed.ts",
     "schema": "src/prisma/schema.prisma"
   }
 }

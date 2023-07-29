@@ -10,6 +10,8 @@ type OAuthUser = {
     createdAt?: string
     updatedAt?: string
 }
+
+
 //
 // export async function addUser(user: OAuthUser) {
 //     return prisma.user.create(

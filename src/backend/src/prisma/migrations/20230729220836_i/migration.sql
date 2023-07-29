@@ -31,6 +31,7 @@ CREATE TABLE "Session" (
 CREATE TABLE "User" (
     "id" TEXT NOT NULL,
     "name" TEXT,
+    "username" TEXT,
     "email" TEXT,
     "emailVerified" TIMESTAMP(3),
     "password" TEXT NOT NULL,
@@ -56,12 +57,12 @@ CREATE TABLE "VerificationRequest" (
 -- CreateTable
 CREATE TABLE "Post" (
     "id" SERIAL NOT NULL,
+    "authorId" TEXT NOT NULL,
+    "title" TEXT NOT NULL,
+    "content" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "published" BOOLEAN NOT NULL DEFAULT false,
-    "title" TEXT NOT NULL,
-    "content" TEXT,
-    "authorId" TEXT NOT NULL,
 
     CONSTRAINT "Post_pkey" PRIMARY KEY ("id")
 );
@@ -69,13 +70,29 @@ CREATE TABLE "Post" (
 -- CreateTable
 CREATE TABLE "Comments" (
     "id" SERIAL NOT NULL,
+    "postId" INTEGER NOT NULL,
+    "authorId" TEXT NOT NULL,
+    "content" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
-    "content" TEXT,
-    "authorId" TEXT NOT NULL,
-    "postId" INTEGER NOT NULL,
 
     CONSTRAINT "Comments_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Like" (
+    "id" SERIAL NOT NULL,
+    "userId" TEXT NOT NULL,
+    "postId" INTEGER NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "Like_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "_likedPosts" (
+    "A" INTEGER NOT NULL,
+    "B" TEXT NOT NULL
 );
 
 -- CreateIndex
@@ -96,6 +113,12 @@ CREATE UNIQUE INDEX "VerificationRequest_token_key" ON "VerificationRequest"("to
 -- CreateIndex
 CREATE UNIQUE INDEX "VerificationRequest_identifier_token_key" ON "VerificationRequest"("identifier", "token");
 
+-- CreateIndex
+CREATE UNIQUE INDEX "_likedPosts_AB_unique" ON "_likedPosts"("A", "B");
+
+-- CreateIndex
+CREATE INDEX "_likedPosts_B_index" ON "_likedPosts"("B");
+
 -- AddForeignKey
 ALTER TABLE "Account" ADD CONSTRAINT "Account_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
@@ -110,3 +133,12 @@ ALTER TABLE "Comments" ADD CONSTRAINT "Comments_postId_fkey" FOREIGN KEY ("postI
 
 -- AddForeignKey
 ALTER TABLE "Comments" ADD CONSTRAINT "Comments_authorId_fkey" FOREIGN KEY ("authorId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Like" ADD CONSTRAINT "Like_postId_fkey" FOREIGN KEY ("postId") REFERENCES "Post"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_likedPosts" ADD CONSTRAINT "_likedPosts_A_fkey" FOREIGN KEY ("A") REFERENCES "Post"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_likedPosts" ADD CONSTRAINT "_likedPosts_B_fkey" FOREIGN KEY ("B") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
