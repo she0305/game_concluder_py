@@ -109,7 +109,13 @@ export const authOptions: NextAuthOptions = {
                 }
             }
             return session
-        }
+        },
+        // async jwt({ token, user}) {
+        //     // make function to query user by email
+        //
+        // },
+
+
     }
     // pages: {
     //     signIn: '/auth/signin',
