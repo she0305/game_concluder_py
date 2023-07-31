@@ -20,26 +20,33 @@ type Query {
 
 }
 #
-##type CreateUsernameResponse {
-##    success: Boolean
-##    error: String
-##}
-#
-#type CreateUser {
-#    id: String
-#    name: String
-#    username: String
-#    email: String
-#    emailVerified: Boolean
-#    password: String
-#    image: String
-#    createdAt: String
-#    updatedAt: String
+#type CreateUsernameResponse {
+#    success: Boolean
+#    error: String
 #}
-#type Mutation {
-#    createUser(name: String!, email: String!, password: String!): User
-##    createUsername(username: String): CreateUsernameResponse
-#}
+
+input CreateUserInput {
+    name: String
+    username: String
+    email: String!
+    password: String
+}
+
+type CreateUser {
+    id: String
+    name: String
+    username: String
+    email: String
+    emailVerified: Boolean
+    password: String
+    image: String
+    createdAt: String
+    updatedAt: String
+}
+type Mutation {
+    createUser(data:CreateUserInput): User
+#    createUsername(username: String): CreateUsernameResponse
+}
 #
 
 `

@@ -1,42 +1,47 @@
-import {prisma} from "../../../db";
+import { prisma } from "../../../db";
+import user from "@/graphql/typeDefs/user";
+import User from "@/graphql/typeDefs/user";
 
 export const userResolvers = {
-    Query: {
-        users: () => {
-        return prisma.user.findMany({})
-
-        },
-
-        // user: () => {
-        //     return prisma.user.findUnique(
-        //         {
-        //             where: {
-        //                 id: _args.id,
-        //             }
-        //         }
-        //     )
-        // }
-
+  Query: {
+    users: (_parent, _args, _context) => {
+      return prisma.user.findMany({});
     },
-    // Mutation: {
-    //     createUser: (_root, _args, _context, _info) => {
-    //         return prisma.user.create(
-    //             {
-    //                 data: {
-    //                     email: _args.email,
-    //                     name: _args.name,
-    //                     image: _args.image,
-    //                     id: _args.id,
-    //                     password: _args.password,
-    //                 }
+
+    // user: () => {
+    //     return prisma.user.findUnique(
+    //         {
+    //             where: {
+    //                 id: _args.id,
     //             }
-    //         )
-    //     }
-    //     // createUsername: () => {},
-    // },
+    //         }
+    //     )
+    // }
+  },
+  Mutation: {
+    createUser:
+     (_parent: User, _args: {
+        data: {
+          CreateUserInput
+        }
+        }, _context, _info) => {
 
-}
+        return prisma.user.create({
+          data: {
+            name: _args.data.CreateUserInput.name,
+            username: _args.data.CreateUserInput.username,
+            email: _args.data.CreateUserInput.email,
+            emailVerified: _args.data.CreateUserInput.emailVerified,
+            password: _args.data.CreateUserInput.password,
+            image: _args.data.CreateUserInput.image,
+            createdAt: new Date(),
+          },
+        });
+      },
+    },
+    // createUsername: () => {},
 
+};
 
 // const typeDefs = `#graphql
 // # Comments in GraphQL strings (such as this one) start with the hash (#) symbol.
