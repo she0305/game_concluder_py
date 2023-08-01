@@ -37,3 +37,6 @@ src/frontend/next-env.d.ts
 
 # intellij configs
 .idea/
+
+# Environments
+venv/
